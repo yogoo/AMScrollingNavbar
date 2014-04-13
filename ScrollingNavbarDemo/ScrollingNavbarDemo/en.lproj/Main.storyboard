@@ -187,25 +187,38 @@
                                 <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="Iqn-LP-PSU"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="HF4-Yc-LRs" id="RMS-aL-2pX"/>
                                     <outlet property="delegate" destination="HF4-Yc-LRs" id="Ry6-eF-kDX"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgt-VC-hLP">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="BLZ-fX-eYZ"/>
+                                    <constraint firstAttribute="height" constant="44" id="MiU-1o-UYq"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="compose" id="r3O-SL-Cs7"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XNc-hV-XVg"/>
+                                    <barButtonItem systemItem="refresh" id="5Xn-DI-E1N"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="5DA-Q0-AzK" secondAttribute="trailing" id="0pA-eX-IgY"/>
-                            <constraint firstItem="L3f-aS-gHk" firstAttribute="top" secondItem="5DA-Q0-AzK" secondAttribute="bottom" id="AyO-Q5-lFk"/>
-                            <constraint firstAttribute="trailing" secondItem="lln-rf-2it" secondAttribute="trailing" id="DME-a3-sym"/>
-                            <constraint firstItem="lln-rf-2it" firstAttribute="top" secondItem="4v4-jr-kc5" secondAttribute="bottom" id="Mih-wg-xzu"/>
-                            <constraint firstItem="5DA-Q0-AzK" firstAttribute="top" secondItem="lln-rf-2it" secondAttribute="bottom" id="V6u-JY-phg"/>
-                            <constraint firstItem="5DA-Q0-AzK" firstAttribute="top" secondItem="lln-rf-2it" secondAttribute="bottom" id="Zb2-1Y-C2O"/>
-                            <constraint firstItem="lln-rf-2it" firstAttribute="leading" secondItem="DDw-IU-eFA" secondAttribute="leading" id="bl2-ou-kIS"/>
-                            <constraint firstItem="5DA-Q0-AzK" firstAttribute="leading" secondItem="DDw-IU-eFA" secondAttribute="leading" id="cLZ-Tw-aKH"/>
+                            <constraint firstItem="lln-rf-2it" firstAttribute="top" secondItem="4v4-jr-kc5" secondAttribute="bottom" id="029-Ww-elt"/>
+                            <constraint firstAttribute="trailing" secondItem="lln-rf-2it" secondAttribute="trailing" id="43h-tY-9kP"/>
+                            <constraint firstAttribute="bottom" secondItem="dgt-VC-hLP" secondAttribute="bottom" id="97y-9Z-RCa"/>
+                            <constraint firstItem="5DA-Q0-AzK" firstAttribute="top" secondItem="lln-rf-2it" secondAttribute="bottom" id="9GA-72-wwy"/>
+                            <constraint firstItem="L3f-aS-gHk" firstAttribute="top" secondItem="5DA-Q0-AzK" secondAttribute="bottom" id="U5D-yi-hL3"/>
+                            <constraint firstItem="dgt-VC-hLP" firstAttribute="leading" secondItem="DDw-IU-eFA" secondAttribute="leading" id="bmu-db-UrF"/>
+                            <constraint firstAttribute="trailing" secondItem="dgt-VC-hLP" secondAttribute="trailing" id="c01-xx-s6o"/>
+                            <constraint firstAttribute="trailing" secondItem="5DA-Q0-AzK" secondAttribute="trailing" id="eOH-xe-rtF"/>
+                            <constraint firstItem="5DA-Q0-AzK" firstAttribute="top" secondItem="lln-rf-2it" secondAttribute="bottom" id="hD0-Vd-ccO"/>
+                            <constraint firstItem="lln-rf-2it" firstAttribute="leading" secondItem="DDw-IU-eFA" secondAttribute="leading" id="lxk-qL-x0F"/>
+                            <constraint firstItem="5DA-Q0-AzK" firstAttribute="leading" secondItem="DDw-IU-eFA" secondAttribute="leading" id="qzP-kt-xEc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="W3E-ai-Jk1">

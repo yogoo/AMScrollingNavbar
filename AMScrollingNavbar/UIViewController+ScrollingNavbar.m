@@ -19,6 +19,9 @@
 - (void)setScrollableView:(UIView*)scrollableView {	objc_setAssociatedObject(self, @selector(scrollableView), scrollableView, OBJC_ASSOCIATION_RETAIN); }
 - (UIView*)scrollableView {	return objc_getAssociatedObject(self, @selector(scrollableView)); }
 
+- (void)setScrollableToolbar:(UIToolbar*)scrollableToolbar {	objc_setAssociatedObject(self, @selector(scrollableToolbar), scrollableToolbar, OBJC_ASSOCIATION_RETAIN); }
+- (UIToolbar*)scrollableToolbar {	return objc_getAssociatedObject(self, @selector(scrollableToolbar)); }
+
 - (void)setOverlay:(UIView*)overlay { objc_setAssociatedObject(self, @selector(overlay), overlay, OBJC_ASSOCIATION_RETAIN); }
 - (UIView*)overlay { return objc_getAssociatedObject(self, @selector(overlay)); }
 
@@ -40,10 +43,20 @@
 
 - (void)followScrollView:(UIView*)scrollableView
 {
-	[self followScrollView:scrollableView withDelay:0];
+	[self followScrollView:scrollableView withToolbar:nil withDelay:0];
 }
 
 - (void)followScrollView:(UIView*)scrollableView withDelay:(float)delay
+{
+    [self followScrollView:scrollableView withToolbar:nil withDelay:delay];
+}
+
+- (void)followScrollView:(UIView*)scrollableView withToolbar:(UIToolbar *)toolbar
+{
+    [self followScrollView:scrollableView withToolbar:toolbar withDelay:0];
+}
+
+- (void)followScrollView:(UIView*)scrollableView withToolbar:(UIToolbar *)toolbar withDelay:(float)delay
 {
 	self.scrollableView = scrollableView;
 	
