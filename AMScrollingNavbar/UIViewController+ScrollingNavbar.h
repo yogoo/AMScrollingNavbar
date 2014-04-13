@@ -40,9 +40,9 @@
  * Remember to call showNavbar or showNavBarAnimated: in your viewWillDisappear and refreshNavbar in viewWillAppear.
  *
  * @param scrollableView The UIView where the scrolling is performed.
- * @param toolbar The UIToolbar that will be hidden in the bottom alongside tha navigation bar
+ * @param constraint The UIToolbar's NSLayoutConstraint that will be manipulated to hide the bar in the bottom alongside tha navigation bar
  */
-- (void)followScrollView:(UIView*)scrollableView withToolbar:(UIToolbar*)toolbar;
+- (void)followScrollView:(UIView*)scrollableView withToolbarConstraint:(NSLayoutConstraint*)constraint;
 
 /** Scrolling init method
  *
@@ -52,10 +52,10 @@
  * Remember to call showNavbar or showNavBarAnimated: in your viewWillDisappear and refreshNavbar in viewWillAppear.
  *
  * @param scrollableView The UIView where the scrolling is performed.
- * @param toolbar The UIToolbar that will be hidden in the bottom alongside tha navigation bar
+ * @param constraint The UIToolbar's NSLayoutConstraint that will be manipulated to hide the bar in the bottom alongside tha navigation bar
  * @param delay The delay of the downward scroll gesture
  */
-- (void)followScrollView:(UIView*)scrollableView withToolbar:(UIToolbar*)toolbar withDelay:(float)delay;
+- (void)followScrollView:(UIView*)scrollableView withToolbarConstraint:(NSLayoutConstraint*)constraint withDelay:(float)delay;
 
 /** Navbar slide down
  *
