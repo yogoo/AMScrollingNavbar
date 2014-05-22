@@ -19,6 +19,9 @@
 - (void)setScrollableView:(UIView*)scrollableView {	objc_setAssociatedObject(self, @selector(scrollableView), scrollableView, OBJC_ASSOCIATION_RETAIN); }
 - (UIView*)scrollableView {	return objc_getAssociatedObject(self, @selector(scrollableView)); }
 
+- (void)setToolbarConstraint:(NSLayoutConstraint*)toolbarConstraint { objc_setAssociatedObject(self, @selector(toolbarConstraint), toolbarConstraint, OBJC_ASSOCIATION_RETAIN); }
+- (NSLayoutConstraint*)toolbarConstraint { return objc_getAssociatedObject(self, @selector(toolbarConstraint)); }
+
 - (void)setOverlay:(UIView*)overlay { objc_setAssociatedObject(self, @selector(overlay), overlay, OBJC_ASSOCIATION_RETAIN); }
 - (UIView*)overlay { return objc_getAssociatedObject(self, @selector(overlay)); }
 
@@ -40,12 +43,23 @@
 
 - (void)followScrollView:(UIView*)scrollableView
 {
-	[self followScrollView:scrollableView withDelay:0];
+	[self followScrollView:scrollableView withToolbarConstraint:nil withDelay:0];
 }
 
 - (void)followScrollView:(UIView*)scrollableView withDelay:(float)delay
 {
+    [self followScrollView:scrollableView withToolbarConstraint:nil withDelay:delay];
+}
+
+- (void)followScrollView:(UIView*)scrollableView withToolbarConstraint:(NSLayoutConstraint*)constraint
+{
+    [self followScrollView:scrollableView withToolbarConstraint:constraint withDelay:0];
+}
+
+- (void)followScrollView:(UIView*)scrollableView withToolbarConstraint:(NSLayoutConstraint*)constraint withDelay:(float)delay
+{
 	self.scrollableView = scrollableView;
+    self.toolbarConstraint = constraint;
 	
 	self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
 	[self.panGesture setMaximumNumberOfTouches:1];
@@ -338,7 +352,8 @@
 - (void)updateSizingWithDelta:(CGFloat)delta
 {
 	[self updateNavbarAlpha:delta];
-
+    [self updateToolbarPositioning:delta];
+    
 	// At this point the navigation bar is already been placed in the right position, it'll be the reference point for the other views'sizing
 	CGRect frameNav = self.navigationController.navigationBar.frame;
 	
@@ -355,6 +370,11 @@
         frame.size.height = [UIScreen mainScreen].bounds.size.height - [self statusBar];
     }
 	self.scrollableView.superview.frame = frame;
+}
+
+- (void)updateToolbarPositioning:(CGFloat)delta
+{
+    self.toolbarConstraint.constant -= delta;
 }
 
 - (void)updateNavbarAlpha:(CGFloat)delta

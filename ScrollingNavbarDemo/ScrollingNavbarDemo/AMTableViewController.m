@@ -13,6 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray* data;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBarConstraint;
 
 @end
 
@@ -33,9 +35,10 @@
     }
 
     [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 49, 0)];
+    [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 49, 0)];
     
 	// Just call this line to enable the scrolling navbar
-	[self followScrollView:self.tableView];
+	[self followScrollView:self.tableView withToolbarConstraint:self.toolBarConstraint];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
