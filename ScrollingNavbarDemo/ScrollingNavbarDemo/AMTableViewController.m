@@ -32,6 +32,8 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
 
+    [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 49, 0)];
+    
 	// Just call this line to enable the scrolling navbar
 	[self followScrollView:self.tableView];
 }
