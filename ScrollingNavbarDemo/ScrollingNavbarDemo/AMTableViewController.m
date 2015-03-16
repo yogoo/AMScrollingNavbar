@@ -11,7 +11,6 @@
 
 @interface AMTableViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray* data;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraint;
 
@@ -23,10 +22,6 @@
 {
     [super viewDidLoad];
     
-    [self.navigationController.navigationBar setBarTintColor:UIColorFromRGB(0x184fa2)];
-    
-    [self setTitle:@"Table View"];
-    
     self.data = @[@"Awesome content", @"Great content", @"Amazing content", @"Ludicrous content", @"Awesome content", @"Great content", @"Amazing content", @"Ludicrous content", @"Awesome content", @"Great content", @"Amazing content", @"Ludicrous content", @"Awesome content", @"Great content", @"Amazing content", @"Ludicrous content"];
     
     if (self.tabBarController) {
@@ -37,29 +32,19 @@
     
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
-    
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nav"]];
-    
-    // Just call this line to enable the scrolling navbar
-    [self followScrollView:self.tableView usingTopConstraint:self.topConstraint withDelay:65];
-    [self setShouldScrollWhenContentFits:YES];
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+    // This enables the user to scroll down the navbar by tapping the status bar.
+    //	[self performSelector:@selector(showNavbar) withObject:nil afterDelay:0.1];  // Use a delay if needed (pre iOS8)
+    [self.parentViewController showNavbar];
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"AMTableViewController"] animated:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self showNavBarAnimated:NO];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self showNavBarAnimated:NO];
+    [self.parentViewController.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"AMTableViewController"] animated:YES];
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
@@ -71,14 +56,6 @@
 {
     // Call this after a small delay, or it won't work
     [self performSelector:@selector(showNavbar) withObject:nil afterDelay:0.2];
-}
-
-- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
-{
-    // This enables the user to scroll down the navbar by tapping the status bar.
-    //	[self performSelector:@selector(showNavbar) withObject:nil afterDelay:0.1];  // Use a delay if needed (pre iOS8)
-    [self showNavbar];
-    return YES;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
